@@ -1,0 +1,132 @@
+/************** header.php *****************/
+
+language_attributes()
+wp_title('|','true','right')
+bloginfo('name')
+bloginfo('pingback_url')
+wp_head()
+
+=============================================
+
+/************** footer.php *****************/
+
+date('Y')
+bloginfo('name')
+wp_footer()
+
+=============================================
+
+/************** index.php *****************/
+
+get_header()
+
+~~~~~~~~~~~~~ Start Posts ~~~~~~~~~~
+
+have_posts()
+the_post()
+the_permalink()
+the_title()
+the_author_posts_link()
+the_date('F j, Y')
+comments_popup_link('No Comments','1 Comments','% Comments','Comment-url','Comments Off')
+the_post_thumbnail('',['class'=>'img-responsive img-thumbnail post-img','alt'=>'my image'])
+the_excerpt()
+get_permalink()
+the_category(', ')
+has_tag()
+the_tags()
+
+~~~~~~~~~~~~~ End Posts ~~~~~~~~~~
+
+~~~~~~~~~~~~~ Start Pagination ~~~~~~~~~~~
+
+get_previous_posts_link()
+previous_posts_link('Prev')
+get_next_posts_link()
+next_posts_link('Next')
+
+~~~~~~~~~~~~~ End Pagination ~~~~~~~~~~~
+
+get_footer()
+
+=============================================
+
+/************** single.php *****************/
+
+get_header()
+
+~~~~~~~~~~~~~ Start Post ~~~~~~~~~~
+
+have_posts()
+the_post()
+edit_post_link('Edit <i class="fa fa-pencil"></i>')
+the_permalink()
+the_title()
+the_author_posts_link()
+the_date('F j, Y')
+comments_popup_link('No Comments','1 Comments','% Comments','Comment-url','Comments Off')
+the_post_thumbnail('',['class'=>'img-responsive img-thumbnail post-img','alt'=>'my image'])
+the_content()
+the_category(', ')
+has_tag()
+the_tags()
+
+~~~~~~~~~~~~~ End Post ~~~~~~~~~~
+
+~~~~~~~~~~~~~ Start author ~~~~~~~~~~
+
+get_the_author_meta('ID')
+get_avatar($userid,'94','','User',$avatararg)
+the_author_meta('first_name')
+the_author_meta('last_name')
+get_the_author_meta('description')
+the_author_meta('description')
+count_user_posts(get_the_author_meta('ID'))
+the_author_posts_link()
+
+~~~~~~~~~~~~~ End author ~~~~~~~~~~
+
+~~~~~~~~~~~~~ Start Pagination ~~~~~~~~~~~
+
+get_previous_post_link()
+previous_post_link('Prev')
+get_next_post_link()
+next_post_link('Next')
+
+~~~~~~~~~~~~~ End Pagination ~~~~~~~~~~~
+
+~~~~~~~~~~~~~ Start comments~~~~~~~~~~~
+
+comments_template()
+
+~~~~~~~~~~~~~ End comments~~~~~~~~~~~
+
+get_footer()
+
+=============================================
+
+/************** comments.php **************/
+
+comments_open()
+comments_number()
+wp_list_comments($comment)
+comment_form()
+
+=============================================
+
+/************** function.php *****************/
+
+wp_enqueue_style('bootstrap-css',get_template_directory_uri().'/css/bootstrap.min.css')
+wp_deregister_script('jquery')
+wp_register_script('jquery',includes_url('js/jquery/jquery.js'),array(),false,true)
+wp_enqueue_script('jquery')
+wp_enqueue_script('bootstrap-js',get_template_directory_uri().'/js/bootstrap.min.js',array('jquery'),false,true)
+wp_enqueue_script('html5',get_template_directory_uri().'/js/html5shiv.min.js')
+wp_script_add_data('html5','conditional','lt IE 9')
+register_nav_menus(array('bootstrap-menu' => 'Main Menu','foot-menu'=> 'Footer Menu'))
+wp_nav_menu(array('theme_location'=> 'bootstrap-menu','menu_class'=> 'nav navbar-nav navbar-right','container'=> false,'depth'	=> 2,'walker'=> new wp_bootstrap_navwalker()))
+add_filter('excerpt_length','excerpt_len')
+add_action('wp_enqueue_scripts','styles')
+add_theme_support('post-thumbnails')
+
+=============================================
